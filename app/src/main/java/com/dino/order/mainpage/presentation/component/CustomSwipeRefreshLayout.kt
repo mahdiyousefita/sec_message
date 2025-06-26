@@ -1,4 +1,4 @@
-package com.dino.order.mainpage.component
+package com.dino.order.mainpage.presentation.component
 
 import android.content.Context
 import android.util.AttributeSet

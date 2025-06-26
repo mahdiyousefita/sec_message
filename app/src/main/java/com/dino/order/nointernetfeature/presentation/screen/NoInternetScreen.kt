@@ -88,7 +88,10 @@ fun NoInternetScreen(onRetry: () -> Unit) {
 
         Text(
             text = stringResource(id = R.string.troubleshooting),
-            fontSize = 17.sp
+            fontSize = 17.sp,
+            modifier = Modifier
+                .fillMaxWidth(),
+            textAlign = TextAlign.Center
         )
 
         Spacer(modifier = Modifier.size(20.dp))

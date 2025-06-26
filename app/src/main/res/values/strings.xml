@@ -24,4 +24,23 @@
     <string name="profile">Profile</string>
     <string name="hellooo">Hellooo!</string>
     <string name="buy_now">Buy Now</string>
+
+    <string name="error_bad_request">There is a problem with the request</string>
+    <string name="error_unauthorized">The required documents to verify the identity of the request were not found</string>
+    <string name="error_forbidden">There are no permissions required to access the resource</string>
+    <string name="error_not_found">Not found</string>
+    <string name="error_conflict">Conflict</string>
+    <string name="internal_server_error">Internal server error</string>
+    <string name="error_with_http_status_code">Error with HTTP status code %d</string>
+    <string name="error_connecting_to_the_server">Error connecting to the server</string>
+    <string name="error_request_timed_out">Request timed out</string>
+    <string name="error_convert_json_response">Error in converting json response</string>
+    <string name="unknown_error_occurred">Unknown error occurred</string>
+    <string name="error_in_entered_loading_date">error in entered loading date</string>
+    <string name="error_in_entered_driving_truck">error in entered driving truck</string>
+    <string name="error_in_entered_destination_city">error in entered destination city</string>
+    <string name="error_in_entered_destination_state">error in entered destination state</string>
+    <string name="error_in_entered_origin_city">error in entered origin city</string>
+    <string name="error_in_entered_origin_state">error in entered origin state</string>
+    <string name="error_retries_exceeded">retry failed</string>
 </resources>

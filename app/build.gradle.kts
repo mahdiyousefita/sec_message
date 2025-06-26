@@ -2,11 +2,17 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.dagger.hilt)
+    alias(libs.plugins.kotlinx.serialization)
 //    alias(libs.plugins.ksp)
     id ("com.google.devtools.ksp")
     id ("kotlin-parcelize")
     kotlin("kapt")
 }
+
+
+val BASE_URL: String = project.findProperty("APP_BASE_URL") as? String ?: "http://localhost:5000/"
+
+
 
 android {
     namespace = "com.dino.order"
@@ -26,9 +32,13 @@ android {
     }
 
     buildTypes {
+        debug {
+            buildConfigField("String", "BASE_URL", "\"$BASE_URL\"")
+        }
         release {
             isMinifyEnabled = true
             isShrinkResources = true
+            buildConfigField("String", "BASE_URL", "\"$BASE_URL\"")
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -44,6 +54,7 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.13"
@@ -53,6 +64,7 @@ android {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
+
 }
 
 dependencies {
@@ -111,5 +123,19 @@ dependencies {
 
     // Coil
     implementation("io.coil-kt:coil-compose:2.2.2")
+
+    // Gson
+    implementation("com.google.code.gson:gson:2.10.1")
+
+    // androidx.security for EncryptedSharedPreferences
+    implementation("androidx.security:security-crypto:1.1.0-alpha06")
+    implementation("androidx.security:security-identity-credential:1.0.0-alpha03")
+    implementation("androidx.security:security-app-authenticator:1.0.0-beta01")
+
+    // material icons
+    implementation(libs.androidx.material.icons.extended)
+
+    // foundation
+    implementation(libs.androidx.compose.foundation)
 
 }

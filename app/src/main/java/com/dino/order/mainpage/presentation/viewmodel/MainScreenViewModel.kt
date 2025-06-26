@@ -1,4 +1,4 @@
-package com.dino.order.mainpage.viewmodel
+package com.dino.order.mainpage.presentation.viewmodel
 
 import android.content.Context
 import android.content.Intent
@@ -16,11 +16,14 @@ import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
 import com.dino.order.DinoOrderApplication
 import com.dino.order.corefeature.presentation.viewmodel.HaveUIEvent
 import com.dino.order.corefeature.presentation.viewmodel.HaveUIEventImpl
+import com.dino.order.destinations.ChatScreenDestination
+import com.dino.order.destinations.ProfileScreenDestination
 import javax.inject.Inject
 
 @HiltViewModel
@@ -38,16 +41,19 @@ class MainScreenViewModel @Inject constructor(
 
 
 
-
-
-
-
     // Check Internet Connection
     fun isConnected(context: Context): Boolean {
         val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         val network = connectivityManager.activeNetwork ?: return false
         val capabilities = connectivityManager.getNetworkCapabilities(network) ?: return false
         return capabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
+    }
+
+    fun navigateToProfileScreen(){
+        navigateToDestination(ProfileScreenDestination, viewModelScope)
+    }
+    fun navigateToChatScreen(id: Long){
+        navigateToDestination(ChatScreenDestination(id.toString()), viewModelScope)
     }
 
 }
