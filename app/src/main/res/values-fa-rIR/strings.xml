@@ -40,4 +40,7 @@
     <string name="error_in_entered_origin_city">error in entered origin city</string>
     <string name="error_in_entered_origin_state">error in entered origin state</string>
     <string name="error_retries_exceeded">retry failed</string>
+    <string name="network_error">network error</string>
+    <string name="timeout_error">timeout error</string>
+
 </resources>

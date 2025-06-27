@@ -28,8 +28,8 @@ class HttpAPIUtil @Inject constructor(
 
     suspend inline fun <ResultType, reified ResponseType : ResponseToResultMapper<ResultType>> callAPIWithErrorHandling(
         noinline callAPI: suspend () -> HttpResponse,
-//        noinline callRefreshTokenAPI: suspend () -> String,
-        needToUpdateToken: Boolean = false
+        noinline callRefreshTokenAPI: suspend () -> String,
+        needToUpdateToken: Boolean = true
     ): Resource<ResultType> {
         var loopRounds = 0
 
@@ -49,12 +49,13 @@ class HttpAPIUtil @Inject constructor(
                     )
 
                     response.status == HttpStatusCode.Companion.Unauthorized -> {
-                        if (needToUpdateToken && loopRounds == 1) {
-//                            val newToken = callRefreshTokenAPI()
-//                            if (newToken.isNotEmpty()) {
-//                                sPrefManager.setToken(newToken)
-//                                throw RetryableException("Token refreshed, retrying request.")
-//                            }
+                        if (needToUpdateToken && loopRounds == 0) {
+                            val newToken = callRefreshTokenAPI()
+                            if (newToken.isNotEmpty()) {
+                                sPrefManager.setToken(newToken)
+                                throw RetryableException("Token refreshed, retrying request.")
+                            }
+
                         }
                         Resource.Error(
                             message = R.string.error_unauthorized.asStringResourceContent()

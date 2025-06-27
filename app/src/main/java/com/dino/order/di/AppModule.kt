@@ -15,6 +15,10 @@ import com.dino.order.authfeature.domain.repository.AuthRepository
 import com.dino.order.corefeature.data.remote.util.HttpAPIUtil
 import com.dino.order.corefeature.data.spref.DataStoreUtil
 import com.dino.order.corefeature.data.spref.SPrefManager
+import com.dino.order.mainpage.data.remote.MainApiService
+import com.dino.order.mainpage.data.remote.MainApiServiceImpl
+import com.dino.order.mainpage.data.repository.MainRepositoryImpl
+import com.dino.order.mainpage.domain.repository.MainRepository
 import com.google.gson.Gson
 import dagger.hilt.android.qualifiers.ApplicationContext
 import io.ktor.client.HttpClient
@@ -153,6 +157,26 @@ object AppModule {
     fun provideAuthRepository(
         authAPIService: AuthAPIService
     ): AuthRepository = AuthRepositoryImpl(authAPIService)
+
+
+    @Singleton
+    @Provides
+    fun provideMainAPIService(
+        httpClient: HttpClient,
+        sPrefManager: SPrefManager,
+        httpAPIUtil: HttpAPIUtil
+    ): MainApiService = MainApiServiceImpl(
+        httpClient = httpClient,
+        sPrefManager = sPrefManager,
+        httpAPIUtil = httpAPIUtil
+    )
+
+    @Singleton
+    @Provides
+    fun provideMainRepository(
+        mainApiService: MainApiService
+    ): MainRepository = MainRepositoryImpl(mainApiService)
+
 
     /**
      * Provides the DataStoreUtil instance.

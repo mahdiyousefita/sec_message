@@ -10,6 +10,6 @@ sealed class CoreRoute(url: String) : BaseRoute(url) {
     /**
      * Represents the route for retrieving a token.
      */
-    object GetToken : CoreRoute("api/refreshToken")
+    object GetToken : CoreRoute("api/auth/refresh")
 
 }

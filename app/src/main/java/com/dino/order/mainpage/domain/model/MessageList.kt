@@ -5,7 +5,6 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class MessageList(
-    val id: Long,
     val name: String,
     val time: String,
     val newMessage: Boolean = false,

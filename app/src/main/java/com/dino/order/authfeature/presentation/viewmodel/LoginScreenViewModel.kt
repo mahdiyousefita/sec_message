@@ -40,6 +40,7 @@ class LoginScreenViewModel @Inject constructor(
                     sPrefManager.setUserLogIn(true)
                     sPrefManager.setUsername(username)
                     sPrefManager.setToken(data.data.accessToken)
+                    sPrefManager.setRefreshToken(data.data.refreshToken)
                     navigateToMainScreen()
                 }
                 is Resource.Loading -> {

@@ -10,6 +10,7 @@ import kotlinx.serialization.Serializable
 data class LoginResponse(
     override val message: String?,
     val access_token: String,
+    val refresh_token: String,
 ) : BaseResponse(), ResponseToResultMapper<LoginUser> {
 
     /**
@@ -24,6 +25,7 @@ data class LoginResponse(
         return if (access_token.isNotEmpty()) {
             LoginUser(
                 accessToken = access_token,
+                refreshToken = refresh_token
             )
         }
         else throw Exception("Error in Login")

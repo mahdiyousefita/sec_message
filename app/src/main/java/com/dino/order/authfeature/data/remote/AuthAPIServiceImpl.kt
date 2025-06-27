@@ -42,7 +42,7 @@ class AuthAPIServiceImpl @Inject constructor(
                 )
             }
         },
-//        callRefreshTokenAPI = this::getToken,
+        callRefreshTokenAPI = this::getToken,
         needToUpdateToken = false
     )
 
@@ -62,7 +62,7 @@ class AuthAPIServiceImpl @Inject constructor(
                     )
                 }
             },
-//            callRefreshTokenAPI = this::getToken,
+            callRefreshTokenAPI = this::getToken,
             needToUpdateToken = false
         )
 }

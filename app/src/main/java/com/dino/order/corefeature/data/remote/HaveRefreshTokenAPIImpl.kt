@@ -1,15 +1,12 @@
 package com.dino.order.corefeature.data.remote
 
-import com.dino.order.corefeature.data.remote.dto.GetTokenRequest
 import com.dino.order.corefeature.data.remote.dto.GetTokenResponse
 import com.dino.order.corefeature.data.spref.SPrefManager
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
+import io.ktor.client.request.headers
 import io.ktor.client.request.post
-import io.ktor.client.request.setBody
-import io.ktor.client.request.url
-import io.ktor.http.ContentType
-import io.ktor.http.contentType
+import io.ktor.http.HttpHeaders
 
 /**
  * Implementation of the HaveRefreshTokenAPI interface.
@@ -30,12 +27,16 @@ class HaveRefreshTokenAPIImpl constructor(
     override suspend fun getToken(): String {
         return try {
             val response = httpClient.post(CoreRoute.GetToken.url) {
-                contentType(ContentType.Application.Json)
-                setBody(GetTokenRequest(sPrefManager.getRefreshToken()))
+                headers {
+                    append(HttpHeaders.Authorization, "Bearer ${sPrefManager.getRefreshToken()}")
+                }
             }.body<GetTokenResponse>()
-            response.mapResponseToResult()
+            val newAccessToken = response.mapResponseToResult()
+            newAccessToken
         } catch (e: Exception) {
-            "error in refresh toke request"
+            e.printStackTrace()
+            "error in refresh token request"
         }
     }
+
 }

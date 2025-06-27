@@ -12,7 +12,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class GetTokenResponse(
     override val message: String?,
-    val token: String?
+    val access_token: String?
 ) : BaseResponse(), ResponseToResultMapper<String> {
 
     /**
@@ -20,5 +20,5 @@ data class GetTokenResponse(
      *
      * @return The access token.
      */
-    override fun mapResponseToResult() = token ?: ""
+    override fun mapResponseToResult() = access_token ?: ""
 }
