@@ -12,6 +12,10 @@ import com.dino.order.authfeature.data.remote.AuthAPIService
 import com.dino.order.authfeature.data.remote.AuthAPIServiceImpl
 import com.dino.order.authfeature.data.repository.AuthRepositoryImpl
 import com.dino.order.authfeature.domain.repository.AuthRepository
+import com.dino.order.chatfeature.data.remote.ChatApiService
+import com.dino.order.chatfeature.data.remote.ChatApiServiceImpl
+import com.dino.order.chatfeature.data.repository.ChatRepositoryImpl
+import com.dino.order.chatfeature.domain.repository.ChatRepository
 import com.dino.order.corefeature.data.remote.util.HttpAPIUtil
 import com.dino.order.corefeature.data.spref.DataStoreUtil
 import com.dino.order.corefeature.data.spref.SPrefManager
@@ -176,6 +180,25 @@ object AppModule {
     fun provideMainRepository(
         mainApiService: MainApiService
     ): MainRepository = MainRepositoryImpl(mainApiService)
+
+
+    @Singleton
+    @Provides
+    fun provideChatAPIService(
+        httpClient: HttpClient,
+        sPrefManager: SPrefManager,
+        httpAPIUtil: HttpAPIUtil
+    ): ChatApiService = ChatApiServiceImpl(
+        httpClient = httpClient,
+        sPrefManager = sPrefManager,
+        httpAPIUtil = httpAPIUtil
+    )
+
+    @Singleton
+    @Provides
+    fun provideChatRepository(
+        chatApiService: ChatApiService
+    ): ChatRepository = ChatRepositoryImpl(chatApiService)
 
 
     /**

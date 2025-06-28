@@ -11,7 +11,11 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.hilt.navigation.compose.hiltViewModel
+import com.dino.order.chatfeature.domain.model.Message
 import com.dino.order.chatfeature.presentation.component.ChatScreenBottomAppBar
+import com.dino.order.chatfeature.presentation.component.ChatSurface
+import com.dino.order.chatfeature.presentation.viewmodel.ChatViewModel
 import com.ramcosta.composedestinations.annotation.Destination
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -19,6 +23,8 @@ import com.ramcosta.composedestinations.annotation.Destination
 @Composable
 fun ChatScreen(chatId: String) {
     val context = LocalContext.current
+
+    val viewMode: ChatViewModel = hiltViewModel()
 
 
     Scaffold(
@@ -46,7 +52,24 @@ fun ChatScreen(chatId: String) {
                 .padding(innerPadding)
                 .fillMaxSize()
         ) {
-
+            ChatSurface(
+                modifier = Modifier
+                    .fillMaxSize(),
+                items = listOf(
+                    Message(
+                        message = "Hello, how you doing?",
+                        sent = true
+                    ),
+                    Message(
+                        message = "Im good",
+                        sent = false
+                    ),
+                    Message(
+                        message = "Im good2",
+                        sent = false
+                    ),
+                )
+            )
         }
     }
 }

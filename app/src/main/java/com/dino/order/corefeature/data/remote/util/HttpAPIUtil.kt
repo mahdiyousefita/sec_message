@@ -49,9 +49,12 @@ class HttpAPIUtil @Inject constructor(
                     )
 
                     response.status == HttpStatusCode.Companion.Unauthorized -> {
-                        if (needToUpdateToken && loopRounds == 0) {
+//                        Log.i("?????", "callAPIWithErrorHandling: ")
+                        if (needToUpdateToken) {
+//                            Log.i("?????", "callAPIWithErrorHandling: ")
                             val newToken = callRefreshTokenAPI()
                             if (newToken.isNotEmpty()) {
+//                                Log.i("?????", "callAPIWithErrorHandling: ")
                                 sPrefManager.setToken(newToken)
                                 throw RetryableException("Token refreshed, retrying request.")
                             }
