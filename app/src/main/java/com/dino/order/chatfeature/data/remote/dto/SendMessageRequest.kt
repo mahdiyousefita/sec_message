@@ -3,8 +3,9 @@ package com.dino.order.chatfeature.data.remote.dto
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class InboxDto(
-    val from : String,
+
+data class SendMessageRequest(
+    val to: String,
     val message: String,
-    val timestamp: String,
+    val encrypted_key: String
 )
