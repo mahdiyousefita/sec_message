@@ -3,6 +3,7 @@ package com.dino.order.corefeature.domain.model
 import android.os.Parcelable
 import com.dino.order.corefeature.presentation.util.Resource
 import kotlinx.parcelize.Parcelize
+import kotlinx.serialization.Serializable
 
 
 /**
@@ -11,6 +12,7 @@ import kotlinx.parcelize.Parcelize
  * @param messages The list of custom message dialog messages.
  * @param type The type of the custom message dialog.
  */
+@Serializable
 @Parcelize
 class CustomMessageDialogData private constructor(
     val messages: List<CustomMessageDialogContentItem>, val type: String

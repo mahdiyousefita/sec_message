@@ -11,10 +11,8 @@ import com.dino.order.corefeature.data.spref.SPrefManager
 import com.dino.order.corefeature.presentation.util.PopBackStackLevel
 import com.dino.order.corefeature.presentation.viewmodel.HaveUIEvent
 import com.dino.order.corefeature.presentation.viewmodel.HaveUIEventImpl
-import com.dino.order.destinations.ChatScreenDestination
-import com.dino.order.destinations.LoginScreenDestination
-import com.dino.order.destinations.MainScreenDestination
-import com.dino.order.destinations.RegisterScreenDestination
+import com.ramcosta.composedestinations.generated.destinations.MainScreenDestination
+import com.ramcosta.composedestinations.generated.destinations.RegisterScreenDestination
 import javax.inject.Inject
 
 @HiltViewModel

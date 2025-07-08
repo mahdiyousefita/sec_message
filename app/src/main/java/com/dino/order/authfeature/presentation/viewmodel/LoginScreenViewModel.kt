@@ -12,8 +12,8 @@ import com.dino.order.corefeature.presentation.util.PopBackStackLevel
 import com.dino.order.corefeature.presentation.util.Resource
 import com.dino.order.corefeature.presentation.viewmodel.HaveUIEvent
 import com.dino.order.corefeature.presentation.viewmodel.HaveUIEventImpl
-import com.dino.order.destinations.MainScreenDestination
-import com.dino.order.destinations.RegisterScreenDestination
+import com.ramcosta.composedestinations.generated.destinations.MainScreenDestination
+import com.ramcosta.composedestinations.generated.destinations.RegisterScreenDestination
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.launch

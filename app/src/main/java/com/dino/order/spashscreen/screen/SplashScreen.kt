@@ -27,15 +27,14 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.ramcosta.composedestinations.annotation.Destination
-import com.ramcosta.composedestinations.annotation.RootNavGraph
 import com.dino.order.R
 import com.dino.order.corefeature.presentation.activity.MainActivity
 import com.dino.order.spashscreen.viewmodel.SpashViewModel
+import com.ramcosta.composedestinations.annotation.RootGraph
 import kotlinx.coroutines.delay
 
 
-@RootNavGraph(start = true)
-@Destination
+@Destination<RootGraph>(start = true)
 @Composable
 fun SplashScreen(navController: NavController) {
     val viewModel: SpashViewModel = hiltViewModel()

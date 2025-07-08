@@ -19,7 +19,6 @@ import com.ramcosta.composedestinations.DestinationsNavHost
 import dagger.hilt.android.AndroidEntryPoint
 import dagger.hilt.android.qualifiers.ApplicationContext
 import com.dino.order.DinoOrderApplication
-import com.dino.order.NavGraphs
 import com.dino.order.corefeature.domain.model.AppLanguage
 import com.dino.order.corefeature.domain.model.toLayoutDirection
 import com.dino.order.corefeature.domain.model.toLocale
@@ -27,6 +26,7 @@ import com.dino.order.corefeature.presentation.activity.theme.Diyan_Web_AppTheme
 import com.dino.order.corefeature.presentation.util.HandleUIEvent
 import com.dino.order.corefeature.presentation.util.LocaleUtils
 import com.dino.order.corefeature.presentation.viewmodel.MainActivityViewModel
+import com.ramcosta.composedestinations.generated.NavGraphs
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -75,33 +75,16 @@ class MainActivity : ComponentActivity() {
                     LocalLayoutDirection provides appLanguage.value.toLayoutDirection()
                 ) {
                     // Set the app's navigation graph and navigation controller
-                    DestinationsNavHost(navGraph = NavGraphs.root, navController = navController as NavHostController)
+                    DestinationsNavHost(
+                        navGraph = NavGraphs.root,
+//                        startRoute = NavGraphs.root.startRoute, // Add this line
+                        navController = navController as NavHostController
+                    )
 
-                    // Handle the deep link
                 }
-//                Scaffold { innerpading ->
-//                    Box(
-//                        modifier = Modifier
-//                            .padding(innerpading)
-//                            .imePadding()
-//                    ) {
-//                        StartApplication { webViewInstance ->
-//                            webView = webViewInstance // Save the WebView instance
-//                        }
-//                    }
-//                }
             }
         }
     }
-
-//    override fun onBackPressed() {
-//        if (this::webView.isInitialized && webView.canGoBack()) {
-//            webView.goBack()
-//        } else {
-//            super.onBackPressed() // Exit the app if no history
-//        }
-//    }
-
 }
 //@Composable
 //fun StartApplication(onWebViewReady: (WebView) -> Unit) {

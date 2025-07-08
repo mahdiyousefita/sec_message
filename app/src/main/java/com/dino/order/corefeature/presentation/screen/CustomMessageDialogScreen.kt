@@ -37,6 +37,7 @@ import com.dino.order.corefeature.presentation.ui.theme.DPLarge
 import com.dino.order.corefeature.presentation.ui.theme.DPMedium
 import com.dino.order.corefeature.presentation.ui.theme.DPSmall
 import com.dino.order.corefeature.presentation.viewmodel.CustomMessageDialogViewModel
+import com.ramcosta.composedestinations.annotation.RootGraph
 
 
 /**
@@ -48,7 +49,7 @@ import com.dino.order.corefeature.presentation.viewmodel.CustomMessageDialogView
  *
  * @param customMessageDialogData The data for the custom message dialog.
  */
-@Destination(style = DestinationStyle.Dialog::class)
+@Destination<RootGraph>(style = DestinationStyle.Dialog::class)
 @Composable
 @Suppress("UNUSED_PARAMETER")
 fun CustomMessageDialogScreen(customMessageDialogData: CustomMessageDialogData) {

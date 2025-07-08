@@ -4,9 +4,9 @@ plugins {
     alias(libs.plugins.dagger.hilt)
     alias(libs.plugins.kotlinx.serialization)
 //    alias(libs.plugins.ksp)
-    id ("com.google.devtools.ksp")
+    id ("com.google.devtools.ksp") version libs.versions.kspVersion.get() // Updated KSP plugin version
     id ("kotlin-parcelize")
-    kotlin("kapt")
+    alias(libs.plugins.compose.compiler)
 }
 
 
@@ -56,9 +56,9 @@ android {
         compose = true
         buildConfig = true
     }
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.13"
-    }
+//    composeOptions {
+//        kotlinCompilerExtensionVersion = "1.5.13"
+//    }
     packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
@@ -89,7 +89,7 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
 
     implementation (libs.hilt.android)
-    kapt (libs.hilt.compiler)
+    ksp (libs.hilt.compiler)
     // For Jetpack Compose integration
     implementation (libs.androidx.hilt.navigation.compose)
 

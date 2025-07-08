@@ -12,8 +12,7 @@ import com.dino.order.corefeature.presentation.util.RSAUtil
 import com.dino.order.corefeature.presentation.util.Resource
 import com.dino.order.corefeature.presentation.viewmodel.HaveUIEvent
 import com.dino.order.corefeature.presentation.viewmodel.HaveUIEventImpl
-import com.dino.order.destinations.LoginScreenDestination
-import com.dino.order.destinations.RegisterScreenDestination
+import com.ramcosta.composedestinations.generated.destinations.LoginScreenDestination
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.launch

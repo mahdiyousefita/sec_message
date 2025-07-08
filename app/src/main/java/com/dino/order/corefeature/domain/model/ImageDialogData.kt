@@ -4,6 +4,7 @@ import android.os.Parcelable
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import kotlinx.parcelize.Parcelize
+import kotlinx.serialization.Serializable
 
 /**
  * The `ImageDialogData` data class represents the data associated with an image dialog.
@@ -16,6 +17,7 @@ import kotlinx.parcelize.Parcelize
  * @param url The URL representing the image. Default value is null.
  * @param type The type of image resource, indicating whether it is based on resource ID, URI, or URL.
  */
+@Serializable
 @Parcelize
 data class ImageDialogData(
     @StringRes val titleStrRes: Int = 0,

@@ -35,8 +35,8 @@ import com.dino.order.corefeature.presentation.ui.theme.DPSmall
 import com.dino.order.corefeature.presentation.util.MenuItem
 import com.dino.order.corefeature.presentation.util.PopBackStackLevel
 import com.dino.order.corefeature.presentation.util.UIEvent
-import com.dino.order.destinations.MainScreenDestination
-import com.dino.order.destinations.ProfileScreenDestination
+import com.ramcosta.composedestinations.generated.destinations.MainScreenDestination
+import com.ramcosta.composedestinations.generated.destinations.ProfileScreenDestination
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.launch
 

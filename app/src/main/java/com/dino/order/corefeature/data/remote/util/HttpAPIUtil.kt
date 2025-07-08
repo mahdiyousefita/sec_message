@@ -2,13 +2,13 @@ package com.dino.order.corefeature.data.remote.util
 
 import android.content.Context
 import android.util.Log
+import com.dino.order.BuildConfig
 import com.dino.order.R
 import com.dino.order.corefeature.data.remote.ResponseToResultMapper
 import com.dino.order.corefeature.data.spref.SPrefManager
 import com.dino.order.corefeature.domain.model.asStringResourceContent
 import com.dino.order.corefeature.presentation.util.Resource
 import com.dino.order.corefeature.util.RetryableException
-import com.ramcosta.composedestinations.BuildConfig
 import io.ktor.client.call.body
 import io.ktor.client.plugins.HttpRequestTimeoutException
 import io.ktor.client.statement.HttpResponse

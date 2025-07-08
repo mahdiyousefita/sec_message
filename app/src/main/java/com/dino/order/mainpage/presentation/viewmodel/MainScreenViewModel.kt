@@ -15,11 +15,11 @@ import com.dino.order.corefeature.data.spref.SPrefManager
 import com.dino.order.corefeature.presentation.util.Resource
 import com.dino.order.corefeature.presentation.viewmodel.HaveUIEvent
 import com.dino.order.corefeature.presentation.viewmodel.HaveUIEventImpl
-import com.dino.order.destinations.ChatScreenDestination
-import com.dino.order.destinations.ProfileScreenDestination
 import com.dino.order.mainpage.domain.model.MessageList
 import com.dino.order.mainpage.domain.usecase.AddContactUseCase
 import com.dino.order.mainpage.domain.usecase.GetContactsUseCase
+import com.ramcosta.composedestinations.generated.destinations.ChatScreenDestination
+import com.ramcosta.composedestinations.generated.destinations.ProfileScreenDestination
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch

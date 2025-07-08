@@ -49,10 +49,11 @@ import com.dino.order.corefeature.presentation.ui.theme.DPMedium
 import com.dino.order.profilefeature.presentation.component.PillShapeCard
 import com.dino.order.profilefeature.presentation.viewmodel.ProfileScreenViewModel
 import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.annotation.RootGraph
 
 
 @OptIn(ExperimentalMaterial3Api::class)
-@Destination
+@Destination<RootGraph>
 @Composable
 fun ProfileScreen() {
 

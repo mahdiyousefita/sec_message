@@ -17,9 +17,10 @@ import com.dino.order.chatfeature.presentation.component.ChatScreenBottomAppBar
 import com.dino.order.chatfeature.presentation.component.ChatSurface
 import com.dino.order.chatfeature.presentation.viewmodel.ChatViewModel
 import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.annotation.RootGraph
 
 @OptIn(ExperimentalMaterial3Api::class)
-@Destination
+@Destination<RootGraph>
 @Composable
 fun ChatScreen(chatId: String) {
     val context = LocalContext.current

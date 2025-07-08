@@ -34,9 +34,10 @@ import com.dino.order.corefeature.presentation.ui.theme.DPExtraLarge
 import com.dino.order.corefeature.presentation.ui.theme.DPMedium
 import com.dino.order.corefeature.presentation.ui.theme.DPTopAppBar
 import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.annotation.RootGraph
 
 
-@Destination
+@Destination<RootGraph>
 @Composable
 fun LoginScreen() {
 

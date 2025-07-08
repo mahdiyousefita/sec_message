@@ -1,8 +1,11 @@
 package com.dino.order.corefeature.presentation.util
 
+import kotlinx.serialization.Serializable
+
 /**
  * Sealed class representing the level of back stack popping.
  */
+@Serializable
 sealed class PopBackStackLevel {
     /**
      * Represents popping all screens from the back stack.

@@ -7,8 +7,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 import com.dino.order.R
 import kotlinx.parcelize.Parcelize
+import kotlinx.serialization.Serializable
 
 
+@Serializable
 @Parcelize
 sealed class StringResourceContent : Parcelable {
     data class Str(val data: String) : StringResourceContent()

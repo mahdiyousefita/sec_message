@@ -53,11 +53,12 @@ import com.dino.order.mainpage.presentation.component.MessageListItems
 import com.dino.order.mainpage.presentation.viewmodel.MainScreenViewModel
 import com.dino.order.nointernetfeature.presentation.screen.NoInternetScreen
 import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.annotation.RootGraph
 import kotlinx.coroutines.delay
 
 
 @OptIn(ExperimentalFoundationApi::class, ExperimentalMaterial3Api::class)
-@Destination
+@Destination<RootGraph>
 @Composable
 fun MainScreen() {
     val context = LocalContext.current
