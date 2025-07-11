@@ -19,6 +19,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Diyan_Web_App"
+rootProject.name = "SecMessage"
 include(":app")
  

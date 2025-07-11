@@ -15,11 +15,11 @@ val BASE_URL: String = project.findProperty("APP_BASE_URL") as? String ?: "http:
 
 
 android {
-    namespace = "com.dino.order"
+    namespace = "com.dino.message"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.dino.order"
+        applicationId = "com.sec.message"
         minSdk = 24
         targetSdk = 35
         versionCode = 10
@@ -137,5 +137,10 @@ dependencies {
 
     // foundation
     implementation(libs.androidx.compose.foundation)
+
+    // room
+    implementation(libs.room.runtime)
+    implementation(libs.room.ktx)
+    ksp(libs.room.compiler)
 
 }
