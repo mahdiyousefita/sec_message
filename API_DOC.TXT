@@ -1,0 +1,150 @@
+5) Posts
+--------
+POST /api/posts
+- Description: Create a new text post for the authenticated user.
+- Auth: Yes
+- Content-Type: application/json
+- Request JSON:
+  {
+    "text": "Hello world"
+  }
+- Request Field Rules:
+  - text: required string
+  - Empty or whitespace-only values are rejected.
+  - Text is trimmed before storing.
+- Success: 201
+  {
+    "message": "Post created successfully",
+    "post_id": 1
+  }
+- Errors:
+  400 {"error": "Invalid JSON body"}
+  400 {"error": "Text is required"}
+  400 {"error": "User not found"}
+  401 JWT auth error (missing/invalid/expired token)
+- Notes:
+  - Current HTTP route is JSON-only (no multipart/form-data upload on this endpoint yet).
+  - Service layer includes media handling, but this route currently sends an empty media list.
+
+GET /api/posts
+- Description: List posts (paginated).
+- Auth: No (currently public)
+- Query Params:
+  page (int, default: 1)
+  limit (int, default: 10, max effective value: 50)
+- Behavior:
+  - If limit > 50, response limit is capped to 50.
+- Success: 200
+  {
+    "page": 1,
+    "limit": 10,
+    "total": 5,
+    "posts": [
+      {
+        "id": 1,
+        "text": "Hello",
+        "author": 1,
+        "created_at": "2026-02-12T10:00:00.000000",
+        "media": [
+          {
+            "id": 1,
+            "url": "http://127.0.0.1:9000/media/posts/1/uuid.jpeg",
+            "mime_type": "image/jpeg"
+          }
+        ]
+      }
+    ]
+  }
+- Notes:
+  - `author` is the numeric user id of the post creator.
+
+
+6) Comments
+-----------
+POST /api/posts/{post_id}/comments
+- Description: Create a comment for a post (supports replies via `parent_id`).
+- Auth: Yes
+- Content-Type: application/json
+- Request JSON:
+  {
+    "text": "Nice post",
+    "parent_id": null
+  }
+- Request Field Rules:
+  - text: required string
+  - Empty or whitespace-only values are rejected.
+  - parent_id: optional integer. If provided, it must reference an existing comment on the same post.
+- Success: 201
+  {
+    "id": 12,
+    "message": "Comment created"
+  }
+- Errors:
+  404 {"error": "User not found"}
+  400 {"error": "Comment text is required"}
+  400 {"error": "Post not found"}
+  400 {"error": "Invalid parent comment"}
+  401 JWT auth error (missing/invalid/expired token)
+
+GET /api/posts/{post_id}/comments
+- Description: Fetch a paginated tree of comments for a post.
+- Auth: No
+- Query Params:
+  page (int, default: 1)
+  page_size (int, default: 10)
+- Success: 200
+  [
+    {
+      "id": 12,
+      "author_id": 1,
+      "author": "alice",
+      "text": "Root comment",
+      "score": 3,
+      "created_at": "Wed, 12 Feb 2026 12:34:56 GMT",
+      "parent_id": null,
+      "replies": [
+        {
+          "id": 13,
+          "author_id": 2,
+          "author": "bob",
+          "text": "Reply comment",
+          "score": 1,
+          "created_at": "Wed, 12 Feb 2026 12:40:00 GMT",
+          "parent_id": 12,
+          "replies": []
+        }
+      ]
+    }
+  ]
+- Notes:
+  - Response contains only root comments for the requested page; each root includes its nested replies.
+  - Comments are ordered by score (desc), then creation time (newer first).
+
+
+7) Votes
+--------
+POST /api/votes
+- Description: Create or update the current user's vote on a post/comment.
+- Auth: Yes
+- Content-Type: application/json
+- Request JSON:
+  {
+    "target_type": "post",
+    "target_id": 1,
+    "value": 1
+  }
+- Request Field Rules:
+  - target_type: required string, allowed values: `post`, `comment`
+  - target_id: required integer
+  - value: required integer, allowed values: `1` (upvote) or `-1` (downvote)
+- Success: 200
+  {"message": "Vote recorded"}
+- Errors:
+  400 {"error": "Invalid target type"}
+  400 {"error": "Invalid vote value"}
+  400 {"error": "User not found"}
+  401 JWT auth error (missing/invalid/expired token)
+- Notes:
+  - Voting is idempotent per user+target. Sending the same vote value again keeps state unchanged and still returns 200.
+  - If a previous vote exists with a different value, it is updated (upsert behavior) instead of creating a duplicate vote.
+  - Current implementation does not return a 404 when `target_id` does not exist.

@@ -8,6 +8,9 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
+import androidx.compose.material.navigation.ModalBottomSheetLayout
+import androidx.compose.material.navigation.rememberBottomSheetNavigator
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.platform.LocalContext
@@ -61,8 +64,10 @@ class MainActivity : ComponentActivity() {
             val theme = viewModel.getSystemTheme(systemTheme).collectAsState(initial = systemTheme)
             val appLanguage = viewModel.appLanguage.collectAsState(initial = AppLanguage.English)
 
+            val bottomSheetNavigator = rememberBottomSheetNavigator()
+
             // Create a navigation controller
-            navController = rememberNavController()
+            navController = rememberNavController(bottomSheetNavigator)
 
             // Set the app's locale based on the selected language
             LocaleUtils.setLocale(LocalContext.current, appLanguage.value.toLocale())
@@ -74,12 +79,19 @@ class MainActivity : ComponentActivity() {
                 CompositionLocalProvider(
                     LocalLayoutDirection provides appLanguage.value.toLayoutDirection()
                 ) {
-                    // Set the app's navigation graph and navigation controller
-                    DestinationsNavHost(
-                        navGraph = NavGraphs.root,
+                    ModalBottomSheetLayout(
+                        bottomSheetNavigator = bottomSheetNavigator,
+                        sheetShape = MaterialTheme.shapes.extraLarge,
+                        sheetBackgroundColor = MaterialTheme.colorScheme.surface,
+                    ){
+                        DestinationsNavHost(
+                            navGraph = NavGraphs.root,
 //                        startRoute = NavGraphs.root.startRoute, // Add this line
-                        navController = navController as NavHostController
-                    )
+                            navController = navController as NavHostController
+                        )
+                    }
+                    // Set the app's navigation graph and navigation controller
+
 
                 }
             }

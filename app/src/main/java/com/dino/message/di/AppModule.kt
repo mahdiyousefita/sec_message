@@ -26,6 +26,10 @@ import com.dino.message.mainpage.data.remote.MainApiService
 import com.dino.message.mainpage.data.remote.MainApiServiceImpl
 import com.dino.message.mainpage.data.repository.MainRepositoryImpl
 import com.dino.message.mainpage.domain.repository.MainRepository
+import com.dino.message.threadfeature.data.remote.ThreadApiService
+import com.dino.message.threadfeature.data.remote.ThreadApiServiceImpl
+import com.dino.message.threadfeature.data.repository.ThreadRepositoryImpl
+import com.dino.message.threadfeature.domain.repository.ThreadRepository
 import com.google.gson.Gson
 import dagger.hilt.android.qualifiers.ApplicationContext
 import io.ktor.client.HttpClient
@@ -203,6 +207,24 @@ object AppModule {
         chatApiService: ChatApiService,
         messageDao: MessageDao
     ): ChatRepository = ChatRepositoryImpl(chatApiService, messageDao)
+
+    @Singleton
+    @Provides
+    fun provideThreadApiService(
+        httpClient: HttpClient,
+        sPrefManager: SPrefManager,
+        httpAPIUtil: HttpAPIUtil
+    ): ThreadApiService = ThreadApiServiceImpl(
+        httpClient = httpClient,
+        sPrefManager = sPrefManager,
+        httpAPIUtil = httpAPIUtil
+    )
+
+    @Singleton
+    @Provides
+    fun provideThreadRepository(
+        threadApiService: ThreadApiService
+    ): ThreadRepository = ThreadRepositoryImpl(threadApiService)
 
 
     /**

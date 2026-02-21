@@ -95,6 +95,7 @@ dependencies {
 
     // compose-destinations
     implementation (libs.core)
+    implementation(libs.bottom.sheet)
     ksp(libs.ksp)
 
     implementation(libs.kotlinx.serialization.json)

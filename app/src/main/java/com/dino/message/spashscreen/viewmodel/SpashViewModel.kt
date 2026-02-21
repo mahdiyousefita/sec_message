@@ -13,6 +13,7 @@ import com.dino.message.corefeature.presentation.viewmodel.HaveUIEvent
 import com.dino.message.corefeature.presentation.viewmodel.HaveUIEventImpl
 import com.ramcosta.composedestinations.generated.destinations.MainScreenDestination
 import com.ramcosta.composedestinations.generated.destinations.RegisterScreenDestination
+import com.ramcosta.composedestinations.generated.destinations.ThreadScreenDestination
 import javax.inject.Inject
 
 @HiltViewModel
@@ -28,7 +29,7 @@ HaveUIEvent by HaveUIEventImpl(app as DinoOrderApplication) {
 
         if (userLogIn){
             navigateWithPopBackStackToDestination(
-                direction = MainScreenDestination,
+                direction = ThreadScreenDestination,
                 scope = viewModelScope,
                 level = PopBackStackLevel.ALL
             )
